@@ -1,4 +1,4 @@
-package com.android.imagelib.data;
+package com.android.imagelib.data.baidu;
 
 import java.util.ArrayList;
 import java.util.List;

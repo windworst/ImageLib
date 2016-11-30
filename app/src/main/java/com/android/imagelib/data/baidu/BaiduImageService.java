@@ -1,4 +1,4 @@
-package com.android.imagelib.data;
+package com.android.imagelib.data.baidu;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

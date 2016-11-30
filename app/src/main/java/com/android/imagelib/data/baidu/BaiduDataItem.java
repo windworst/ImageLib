@@ -1,8 +1,8 @@
-package com.android.imagelib.data;
+package com.android.imagelib.data.baidu;
 
-import com.android.imagelib.DisplayItem;
+import com.android.imagelib.data.ImageItem;
 
-public class BaiduDataItem implements DisplayItem {
+public class BaiduDataItem implements ImageItem {
     public String download_url, thumbnail_url;
 
     @Override
