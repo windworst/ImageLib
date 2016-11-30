@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.android.imagelib.data.ImageItem;
 import com.android.imagelib.data.ImageSource;
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onError(Throwable e) {
-
+            Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
         }
 
         @Override
