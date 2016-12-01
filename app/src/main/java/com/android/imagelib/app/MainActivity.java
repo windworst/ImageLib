@@ -1,8 +1,7 @@
-package com.android.imagelib;
+package com.android.imagelib.app;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -15,32 +14,37 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.imagelib.R;
 import com.android.imagelib.data.ImageItem;
 import com.android.imagelib.data.ImageSource;
 import com.android.imagelib.util.ViewUtil;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import rx.Observable;
 import rx.Observer;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private RecyclerView mRecyclerViewPreview;
     private RelativeLayout mLayoutMain;
     private List<ImageItem> mImageItemList = new ArrayList<>();
     private int mPage = 100;
     private PreviewItemAdapter mPreviewItemAdapter = new PreviewItemAdapter();
+    private RequestManager mGlide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mGlide = Glide.with(this);
         initView();
         loadBaiduImageList().subscribe(mPreviewItemAdapter);
     }
@@ -77,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         popupWindow.setContentView(view);
         popupWindow.showAtLocation(mLayoutMain, Gravity.CENTER, 0, 0);
         ImageView imageView = ViewUtil.$(view, R.id.imageViewShowPicture);
-        View.OnClickListener onClickListener = v -> Glide.with(this).load(imageItem.getImageUrl()).into(new SimpleTarget<GlideDrawable>() {
+        View.OnClickListener onClickListener = v -> mGlide.load(imageItem.getImageUrl()).into(new SimpleTarget<GlideDrawable>() {
             @Override
             public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
                 imageView.setImageDrawable(resource);
@@ -88,13 +92,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Observable<List<ImageItem>> loadBaiduImageList() {
-        return ImageSource.BAIDU.loadImage(mImageItemList.size(), mPage, "美女", "性感").map(imageItems -> {
+        return ImageSource.BAIDU.loadImage(mImageItemList.size(), mPage, "美女", "性感").compose(bindToLifecycle()).map(imageItems -> {
             mImageItemList.addAll(imageItems);
             return mImageItemList;
         });
     }
 
     private class PreviewItemAdapter extends RecyclerView.Adapter<PreviewItemAdapter.ItemHolder> implements Observer<List<ImageItem>> {
+        private List<ImageItem> imageItemList = Collections.EMPTY_LIST;
         @Override
         public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new ItemHolder(LayoutInflater.from(MainActivity.this).inflate(R.layout.display_item, null));
@@ -102,18 +107,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(ItemHolder holder, int position) {
-            final ImageItem imageItem = mImageItemList.get(position);
+            final ImageItem imageItem = imageItemList.get(position);
             String url = imageItem.getThumbImageUrl();
             if (url != null && !url.equals(holder.url)) {
                 holder.url = imageItem.getThumbImageUrl();
                 holder.imageView.setOnClickListener(v -> showPicture(imageItem));
-                Glide.with(MainActivity.this).load(imageItem.getThumbImageUrl()).into(holder.imageView);
+                mGlide.load(imageItem.getThumbImageUrl()).into(holder.imageView);
             }
         }
 
         @Override
         public int getItemCount() {
-            return mImageItemList.size();
+            return imageItemList.size();
         }
 
         @Override
@@ -128,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onNext(List<ImageItem> imageItems) {
-            notifyItemRangeInserted(mImageItemList.size(), 1);
+            imageItemList = imageItems;
+            notifyItemRangeInserted(imageItemList.size(), 1);
         }
 
         class ItemHolder extends RecyclerView.ViewHolder {
