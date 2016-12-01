@@ -92,7 +92,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private Observable<List<ImageItem>> loadBaiduImageList() {
-        return ImageSource.BAIDU.loadImage(mImageItemList.size(), mPage, "美女", "性感").compose(bindToLifecycle()).map(imageItems -> {
+        return ImageSource.BAIDU.loadImage(mImageItemList.size(), mPage, "美女", "全部").compose(bindToLifecycle()).map(imageItems -> {
             mImageItemList.addAll(imageItems);
             return mImageItemList;
         });
