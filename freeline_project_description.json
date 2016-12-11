@@ -1,0 +1,96 @@
+{
+    "android_gradle_plugin_version": "2.2.3",
+    "apk_path": "X:\\project\\ImageLib\\app\\build\\outputs\\apk\\app-debug.apk",
+    "auto_dependency": true,
+    "build_cache_dir": "X:\\project\\ImageLib\\app\\build\\freeline",
+    "build_directory": "X:\\project\\ImageLib\\app\\build",
+    "build_script": "gradlew.bat :app:assembleDebug",
+    "build_script_work_directory": "",
+    "build_tools_directory": "X:\\Android\\Sdk\\build-tools\\24.0.2",
+    "build_tools_version": "24.0.2",
+    "compile_sdk_directory": "X:\\Android\\Sdk\\platforms\\android-24",
+    "compile_sdk_version": "android-24",
+    "databinding": [
+        
+    ],
+    "databinding_modules": [
+        
+    ],
+    "debug_package": "com.android.imagelib",
+    "exclude_dep_res_paths": [
+        
+    ],
+    "extra_dep_res_paths": [
+        
+    ],
+    "freeline_cache_dir": "X:\\project\\ImageLib",
+    "freeline_gradle_plugin_version": "0.8.3",
+    "java_home": "X:\\Java\\jdk1.8.0",
+    "launcher": "com.android.imagelib.app.MainActivity",
+    "main_assets_directory": [
+        "X:\\project\\ImageLib\\app\\src\\debug\\assets",
+        "X:\\project\\ImageLib\\app\\src\\main\\assets"
+    ],
+    "main_jniLibs_directory": [
+        "X:\\project\\ImageLib\\app\\src\\debug\\jniLibs",
+        "X:\\project\\ImageLib\\app\\src\\main\\jniLibs"
+    ],
+    "main_jni_directory": [
+        "X:\\project\\ImageLib\\app\\src\\debug\\jni",
+        "X:\\project\\ImageLib\\app\\src\\main\\jni"
+    ],
+    "main_manifest_path": "X:\\project\\ImageLib\\app\\src\\main\\AndroidManifest.xml",
+    "main_project_dir": "app",
+    "main_project_name": "app",
+    "main_r_path": "X:\\project\\ImageLib\\app\\build\\generated\\source\\r\\debug\\R.java",
+    "main_res_directory": [
+        "X:\\project\\ImageLib\\app\\src\\debug\\res",
+        "X:\\project\\ImageLib\\app\\src\\main\\res"
+    ],
+    "main_src_directory": [
+        "X:\\project\\ImageLib\\app\\src\\debug\\java",
+        "X:\\project\\ImageLib\\app\\src\\main\\java"
+    ],
+    "module_dependencies": {
+        "app": [
+            
+        ]
+    },
+    "modules": [
+        {
+            "name": "app",
+            "path": "X:\\project\\ImageLib\\app"
+        }
+    ],
+    "package": "com.android.imagelib",
+    "product_flavor": "",
+    "project_source_sets": {
+        "app": {
+            "main_assets_directory": [
+                "X:\\project\\ImageLib\\app\\src\\debug\\assets",
+                "X:\\project\\ImageLib\\app\\src\\main\\assets"
+            ],
+            "main_jniLibs_directory": [
+                "X:\\project\\ImageLib\\app\\src\\debug\\jniLibs",
+                "X:\\project\\ImageLib\\app\\src\\main\\jniLibs"
+            ],
+            "main_jni_directory": [
+                "X:\\project\\ImageLib\\app\\src\\debug\\jni",
+                "X:\\project\\ImageLib\\app\\src\\main\\jni"
+            ],
+            "main_manifest_path": "X:\\project\\ImageLib\\app\\src\\main\\AndroidManifest.xml",
+            "main_res_directory": [
+                "X:\\project\\ImageLib\\app\\src\\debug\\res",
+                "X:\\project\\ImageLib\\app\\src\\main\\res"
+            ],
+            "main_src_directory": [
+                "X:\\project\\ImageLib\\app\\src\\debug\\java",
+                "X:\\project\\ImageLib\\app\\src\\main\\java"
+            ]
+        }
+    },
+    "project_type": "gradle",
+    "root_dir": "X:\\project\\ImageLib",
+    "sdk_directory": "X:\\Android\\Sdk",
+    "use_jdk8": true
+}
